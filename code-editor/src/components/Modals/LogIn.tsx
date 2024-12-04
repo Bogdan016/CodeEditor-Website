@@ -1,8 +1,15 @@
 import React from "react";
+import { useSetRecoilState } from "recoil";
+import { authState } from "../atoms/authenticationAtom";
 
 type LogInProps = {};
 
 const LogIn: React.FC<LogInProps> = () => {
+
+  const setAuthModalState = useSetRecoilState(authState);
+  const handleClick = (type: "login" | "register" | "forgotPassword") => {
+    setAuthModalState((prev) => ({ ...prev, type}))
+  }
   return (
     <form className="space-y-6 text-black">
       <h3 className="text-2xl font-semibold text-center">
@@ -51,12 +58,12 @@ const LogIn: React.FC<LogInProps> = () => {
       <div className="text-sm text-center text-black-300">
         <p>
           Don't have an account?{" "}
-          <a href="#" className="text-blue-400 hover:underline">
+          <a href="#" className="text-blue-400 hover:underline" onClick={() => handleClick("register") }>
             Sign up
           </a>
         </p>
         <p>
-          <a href="#" className="text-blue-400 hover:underline">
+          <a href="#" className="text-blue-400 hover:underline" onClick={() => handleClick("forgotPassword") }>
             Forgot your password?
           </a>
         </p>

@@ -3,8 +3,12 @@ import Navbar from "@/components/Navbar/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import Authentication from "@/components/Modals/Authentication";
+import { useRecoilValue } from "recoil";
+import { authState } from "@/components/atoms/authenticationAtom"
+
 
 const AuthPage = () => {
+  const authModal = useRecoilValue(authState);
   return (
     <>
       <Navbar />
@@ -21,7 +25,8 @@ const AuthPage = () => {
           <button className="px-6 py-3 rounded-md text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:ring-4 focus:ring-blue-300 transition-all duration-200 shadow-lg transform hover:scale-105">
             Get Started
           </button>
-          <Authentication />
+          {/* <Authentication /> */}
+          { authModal.isOpen && <Authentication />}
         </div>
       </div>
     </>
