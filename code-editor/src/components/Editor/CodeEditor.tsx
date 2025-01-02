@@ -4,6 +4,7 @@ import LanguageSelector from "./LanguageSelector"; // Component for language sel
 import { CODE_SNIPPETS } from "./constants"; // Default code snippets for each language
 import Output from "./Output"; // Output display component
 import * as monaco from "monaco-editor"; // Monaco editor types
+import Topbar from "./Topbar"; // Import the Topbar component
 
 const CodeEditor: React.FC = () => {
   const [language, setLanguage] = useState<keyof typeof CODE_SNIPPETS>("java"); // Current programming language
@@ -21,34 +22,44 @@ const CodeEditor: React.FC = () => {
     setValue(CODE_SNIPPETS[validLanguage]); // Update the code content for the selected language
   };
 
+  const handleLogout = () => {
+    console.log("User logged out"); // Add your logout logic here
+  };
+
   return (
-    <div className="flex flex-col md:flex-row gap-6 p-6 bg-gray-900 rounded-lg shadow-lg">
-      {/* Left side: Code editor with language selector */}
-      <div className="w-full md:w-1/2">
-        <LanguageSelector language={language} onSelect={onSelect} /> {/* Dropdown to select language */}
+    <div className="h-screen flex flex-col bg-gray-900">
+      {/* Render Topbar */}
+      <Topbar />
 
-        {/* Code editor container */}
-        <div className="mt-4 rounded-lg overflow-hidden shadow-inner bg-gray-800 border border-gray-700">
-          <Editor
-            options={{
-              minimap: { enabled: false }, // Disable the minimap
-              fontSize: 14, // Set editor font size
-              fontFamily: "Fira Code, monospace", // Font for code
-              scrollBeyondLastLine: true, // Enable extra scrolling
-            }}
-            height="75vh" // Set editor height
-            theme="vs-dark" // Dark theme for editor
-            language={language} // Syntax highlighting for the selected language
-            defaultValue={CODE_SNIPPETS[language]} // Default code snippet
-            onMount={onMount} // Save editor reference on mount
-            value={value} // Current code in the editor
-            onChange={(value) => setValue(value || "")} // Update code when edited
-          />
+      {/* Main content */}
+      <div className="flex flex-col md:flex-row gap-6 p-6">
+        {/* Left side: Code editor with language selector */}
+        <div className="w-full md:w-1/2">
+          <LanguageSelector language={language} onSelect={onSelect} /> {/* Dropdown to select language */}
+
+          {/* Code editor container */}
+          <div className="mt-4 rounded-lg overflow-hidden shadow-inner bg-gray-800 border border-gray-700">
+            <Editor
+              options={{
+                minimap: { enabled: false }, // Disable the minimap
+                fontSize: 14, // Set editor font size
+                fontFamily: "Fira Code, monospace", // Font for code
+                scrollBeyondLastLine: true, // Enable extra scrolling
+              }}
+              height="75vh"
+              theme="vs-dark"
+              language={language}
+              defaultValue={CODE_SNIPPETS[language]}
+              onMount={onMount}
+              value={value}
+              onChange={(value) => setValue(value || "")}
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Right side: Output display */}
-      <Output editorRef={editorRef} language={language} /> {/* Show the output */}
+        {/* Right side: Output display */}
+        <Output editorRef={editorRef} language={language} /> {/* Show the output */}
+      </div>
     </div>
   );
 };

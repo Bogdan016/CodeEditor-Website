@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSetRecoilState } from "recoil";
-import { authState } from "../atoms/authenticationAtom";
+import { authState } from "../Atoms/authenticationAtom";
 
 
 const Navbar = () => {
@@ -25,12 +25,6 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center space-x-6">
-        <Link
-          href="/docs"
-          className="text-gray-300 hover:text-white text-sm font-medium hidden sm:block transition-all duration-150"
-        >
-          Docs
-        </Link>
         <button
           className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md 
                      hover:bg-blue-500 focus:ring-2 focus:ring-blue-300 focus:outline-none 

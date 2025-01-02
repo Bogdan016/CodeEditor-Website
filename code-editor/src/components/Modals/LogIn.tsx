@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { authState } from "../atoms/authenticationAtom";
+import { authState } from "../Atoms/authenticationAtom";
 import { auth } from "@/firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
