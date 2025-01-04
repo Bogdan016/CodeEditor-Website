@@ -1,9 +1,9 @@
 import { auth } from "@/firebase/firebase";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth"; // Import hooks for auth
-import { FaSignOutAlt } from "react-icons/fa"; // Logout icon
-import { MdMenuBook } from "react-icons/md"; // Documentation icon
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { FaSignOutAlt } from "react-icons/fa";
+import { MdMenuBook } from "react-icons/md";
 
 const Topbar: React.FC = () => {
   const [isDocsOpen, setIsDocsOpen] = useState(false); // State for documentation dropdown
@@ -25,12 +25,11 @@ const Topbar: React.FC = () => {
 
   return (
     <div className="flex items-center justify-between p-4 bg-gray-900 shadow-md rounded-b-lg relative">
-      {/* Centered Title */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
         <h1 className="text-4xl font-bold text-white">Code Editor</h1>
       </div>
 
-      {/* Right side: Documentation and Logout */}
+      {/*Documentation and Logout */}
       <div className="flex items-center gap-4 ml-auto">
         {/* Documentation Dropdown */}
         <div className="relative">
@@ -39,43 +38,74 @@ const Topbar: React.FC = () => {
             className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md focus:outline-none hover:bg-gray-700"
           >
             <MdMenuBook className="text-lg" />
-          </button>
-          {isDocsOpen && (
+            </button>
+            {isDocsOpen && (
             <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-gray-800 z-50">
-              <ul className="py-2">
+                <ul className="py-2">
                 <li className="px-4 py-2 hover:bg-gray-700">
-                  <a
+                    <a
                     href="https://docs.oracle.com/javase/tutorial/"
                     target="_blank"
                     rel="noreferrer"
                     className="text-white"
-                  >
+                    >
                     Java
-                  </a>
+                    </a>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-700">
-                  <a
+                    <a
                     href="https://docs.python.org/3/"
                     target="_blank"
                     rel="noreferrer"
                     className="text-white"
-                  >
+                    >
                     Python
-                  </a>
+                    </a>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-700">
-                  <a
+                    <a
                     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
                     target="_blank"
                     rel="noreferrer"
                     className="text-white"
-                  >
+                    >
                     JavaScript
-                  </a>
+                    </a>
                 </li>
-              </ul>
+                <li className="px-4 py-2 hover:bg-gray-700">
+                    <a
+                    href="https://www.typescriptlang.org/docs/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white"
+                    >
+                    TypeScript
+                    </a>
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-700">
+                    <a
+                    href="https://devdocs.io/c/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white"
+                    >
+                    C
+                    </a>
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-700">
+                    <a
+                    href="https://www.php.net/docs.php"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white"
+                    >
+                    PHP
+                    </a>
+                </li>
+                </ul>
             </div>
-          )}
+            )}
+
         </div>
         {!user ? (
           <Link href="/auth">

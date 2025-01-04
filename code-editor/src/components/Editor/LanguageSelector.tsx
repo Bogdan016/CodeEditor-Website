@@ -9,7 +9,7 @@ interface LanguageSelectorProps {
 }
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ language, onSelect }) => {
-  const [isOpen, setIsOpen] = useState(false); // Manage dropdown open/close state
+  const [isOpen, setIsOpen] = useState(false); 
 
   const handleToggle = () => {
     setIsOpen(!isOpen); // Toggle the dropdown menu
@@ -22,7 +22,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ language, onSelect 
 
   return (
     <div className="relative ml-2 mb-6">
-      <p className="mb-2 text-lg text-gray-300">Language:</p>
+      <p className="mb-2 text-lg font-semibold text-gray-300">Language:</p>
       <div>
         {/* Button to toggle dropdown */}
         <button

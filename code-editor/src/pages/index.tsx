@@ -1,5 +1,5 @@
 import React from "react";
-import CodeEditor from "@/components/Editor/CodeEditor"; // Make sure the path matches your project structure
+import CodeEditor from "@/components/Editor/CodeEditor";
 
 const Home: React.FC = () => {
   return (
